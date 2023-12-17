@@ -1,3 +1,3 @@
 ## My Portfolio
 
-My portfolio 
+This repo contains my portfolio
