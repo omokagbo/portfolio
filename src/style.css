@@ -118,8 +118,12 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
 .education { margin-top: 35px; padding-top: 20px; border-top: 1px solid #cbd6cc; }
 .education p { margin: 0; color: var(--ink); font-size: 14px; }
 .skills-block { margin-top: 72px; padding-top: 23px; border-top: 1px solid #cbd6cc; }
+.skills-heading { margin: 0 0 12px; color: var(--ink); font-size: 14px; font-weight: 600; }
 .skills-list { display: flex; flex-wrap: wrap; gap: 9px; }
 .skills-list span { padding: 9px 12px; border: 1px solid #cbd6cc; color: #3d4c46; font-size: 12px; }
+.skill-group--secondary { margin-top: 22px; padding-top: 18px; border-top: 1px solid #cbd6cc; }
+.skill-group--secondary .skills-heading { color: var(--muted); }
+.skills-list--secondary span { border-color: transparent; color: #5f6e68; background: rgba(255,255,255,.52); font-size: 11px; }
 
 .experience-heading { margin-bottom: 46px; }
 .experience-list { border-top: 1px solid var(--line); }
