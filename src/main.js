@@ -4,6 +4,24 @@ const profileImage = "https://omokagbo.github.io/portfolio/img/profile.png";
 
 const projects = [
   {
+    name: "ALAT by Wema",
+    category: "Mobile banking and platform modernization",
+    description:
+      "Led the move from a legacy Xamarin app to native Swift and UIKit, establishing reusable architecture and engineering standards. Helped pioneer an AI voice-banking feature in West Africa, alongside work across cards, FX, savings, analytics, and personalization.",
+    impact: "App stability improved from about 80% to over 99%",
+    stack: [
+      "Swift",
+      "UIKit",
+      "Xamarin",
+      "C#",
+      "AVFoundation",
+      "gRPC",
+      "ML Kit",
+    ],
+    color: "green",
+    visual: "banking",
+  },
+  {
     name: "VillageSquare",
     category: "Real-time audio and video",
     description:
@@ -50,6 +68,13 @@ const projects = [
 ];
 
 const roles = [
+  {
+    company: "ALAT by Wema",
+    role: "Lead iOS Developer",
+    dates: "Aug 2024 - Present",
+    detail:
+      "Leading iOS architecture and delivery. Migrated the legacy Xamarin app to native Swift and UIKit, improving app stability from about 80% to over 99%.",
+  },
   {
     company: "PubliclyMe",
     role: "Lead Mobile Developer, Contract",
@@ -124,6 +149,7 @@ const projectMarkup = projects
       ${project.visual === "feed" ? '<div class="feed-window"><span class="feed-dot"></span><span class="feed-line feed-line--long"></span><span class="feed-line"></span><span class="feed-image"></span><span class="feed-line feed-line--short"></span></div><span class="art-caption">SOCIAL / MEDIA</span>' : ""}
       ${project.visual === "receipt" ? '<div class="receipt-window"><span class="receipt-brand">SWIFTMONEY</span><span class="receipt-rule"></span><span class="receipt-line"></span><span class="receipt-line receipt-line--short"></span><span class="receipt-rule"></span><span class="receipt-total"></span></div><span class="art-caption">SECURE FINANCE</span>' : ""}
       ${project.visual === "route" ? '<div class="route-window"><span class="route-pin route-pin--start"></span><span class="route-path"></span><span class="route-pin route-pin--end"></span></div><span class="art-caption">MOBILITY / IOS</span>' : ""}
+      ${project.visual === "banking" ? '<div class="banking-window"><div class="banking-head"><span></span><i></i></div><div class="banking-balance"></div><div class="banking-subline"></div><div class="banking-actions"><i></i><i></i><i></i></div><div class="banking-row"></div><div class="banking-row banking-row--short"></div></div><span class="art-caption">ALAT / DIGITAL BANKING</span>' : ""}
     </div>
     <div class="project-copy">
       <p class="eyebrow">${project.category}</p>
@@ -207,7 +233,7 @@ document.querySelector("#app").innerHTML = `
         </div>
         <div class="about-copy" data-reveal>
           <p class="about-lede">The best mobile work is equal parts clear architecture and care for the person holding the phone.</p>
-          <p>I build native iOS applications with Swift, UIKit, and SwiftUI, from early technical decisions through release and ongoing improvement. I care about the unglamorous work too: resilient networking, useful tests, performance, accessibility, and code a team can keep changing.</p>
+          <p>I build native iOS products with Swift, UIKit, and SwiftUI, from architecture and migration through release. I also bring hands-on experience across cross-platform mobile tools and Python/FastAPI services, which helps me make practical technology decisions across a product's lifecycle.</p>
           <p>As a lead, I set direction without losing touch with the implementation. I work closely with product, design, and backend teams, and enjoy helping engineers do their best work.</p>
           <div class="education"><span class="eyebrow">Education</span><p>B.Eng. Electrical / Electronic Engineering<br />University of Benin</p></div>
         </div>
@@ -220,7 +246,7 @@ document.querySelector("#app").innerHTML = `
         </div>
         <div class="skill-group skill-group--secondary">
           <h3 class="skills-heading">Also experienced with</h3>
-          <div class="skills-list skills-list--secondary"><span>Flutter</span><span>Dart</span><span>KMM</span><span>Kotlin</span><span>Xamarin</span><span>C#</span><span>Python</span><span>FastAPI</span></div>
+          <div class="skills-list skills-list--secondary"><span>Flutter</span><span>Dart</span><span>KMM</span><span>Kotlin</span><span>Xamarin</span><span>C#</span><span>Objective-C</span><span>React Native</span><span>JavaScript</span><span>Python</span><span>FastAPI</span></div>
         </div>
       </div>
     </section>
