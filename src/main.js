@@ -214,7 +214,14 @@ document.querySelector("#app").innerHTML = `
       </div>
       <div class="page-shell skills-block" data-reveal>
         <p class="eyebrow">Tools and practice</p>
-        <div class="skills-list"><span>Swift</span><span>SwiftUI</span><span>UIKit</span><span>Combine</span><span>Swift Concurrency</span><span>AVFoundation</span><span>Core Data</span><span>Realm</span><span>URLSession</span><span>WebSocket</span><span>XCTest</span><span>MVVM-C</span><span>Clean Architecture</span><span>Fastlane</span></div>
+        <div class="skill-group">
+          <h3 class="skills-heading">Core iOS</h3>
+          <div class="skills-list"><span>Swift</span><span>SwiftUI</span><span>UIKit</span><span>Combine</span><span>Swift Concurrency</span><span>AVFoundation</span><span>Core Data</span><span>Realm</span><span>URLSession</span><span>WebSocket</span><span>XCTest</span><span>MVVM-C</span><span>Clean Architecture</span><span>Fastlane</span></div>
+        </div>
+        <div class="skill-group skill-group--secondary">
+          <h3 class="skills-heading">Also experienced with</h3>
+          <div class="skills-list skills-list--secondary"><span>Flutter</span><span>Dart</span><span>KMM</span><span>Kotlin</span><span>Xamarin</span><span>C#</span><span>Python</span><span>FastAPI</span></div>
+        </div>
       </div>
     </section>
 
