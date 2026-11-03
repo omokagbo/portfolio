@@ -191,7 +191,7 @@ const roles = [
 const projectMarkup = projects
   .map(
     (project) => `
-  <article class="project-row project-row--${project.color}">
+  <article class="project-row project-row--${project.color}" data-reveal>
     <div class="project-art project-art--${project.visual}" aria-hidden="true">
       ${project.visual === "waveform" ? '<div class="waveform"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="art-caption">LIVE AUDIO</span>' : ""}
       ${project.visual === "feed" ? '<div class="feed-window"><span class="feed-dot"></span><span class="feed-line feed-line--long"></span><span class="feed-line"></span><span class="feed-image"></span><span class="feed-line feed-line--short"></span></div><span class="art-caption">SOCIAL / MEDIA</span>' : ""}
@@ -216,7 +216,7 @@ const projectMarkup = projects
 const experienceMarkup = roles
   .map(
     (role) => `
-  <article class="role-row">
+  <article class="role-row" data-reveal>
     <div class="role-date">${role.dates}</div>
     <div class="role-main">
       <h3>${role.company}</h3>
