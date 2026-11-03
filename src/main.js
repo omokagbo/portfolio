@@ -1,6 +1,14 @@
 import "./style.css";
+import sunIcon from "lucide-static/icons/sun.svg?raw";
+import moonIcon from "lucide-static/icons/moon.svg?raw";
+import monitorIcon from "lucide-static/icons/monitor.svg?raw";
 
 const profileImage = "https://omokagbo.github.io/portfolio/img/profile.png";
+const themeIcons = {
+  light: sunIcon,
+  dark: moonIcon,
+  system: monitorIcon,
+};
 
 const projects = [
   {
@@ -229,6 +237,16 @@ document.querySelector("#app").innerHTML = `
       <a href="#work">Selected work</a>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
+      <div class="theme-control">
+        <button class="theme-trigger" type="button" aria-label="Color theme: System" aria-expanded="false" aria-controls="theme-options">
+          <span class="theme-trigger-icon" aria-hidden="true"></span>
+        </button>
+        <div class="theme-popover" id="theme-options" role="group" aria-label="Choose a color theme" hidden>
+          <button class="theme-option" type="button" data-theme-choice="light" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">${sunIcon}</span><span>Light</span></button>
+          <button class="theme-option" type="button" data-theme-choice="dark" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">${moonIcon}</span><span>Dark</span></button>
+          <button class="theme-option" type="button" data-theme-choice="system" aria-pressed="false"><span class="theme-option-icon" aria-hidden="true">${monitorIcon}</span><span>System</span></button>
+        </div>
+      </div>
       <a class="nav-contact" href="mailto:emmanuel.omokagbo@gmail.com">Get in touch</a>
     </nav>
   </header>
@@ -251,7 +269,7 @@ document.querySelector("#app").innerHTML = `
         <div class="portrait-index" aria-hidden="true">EO / 26</div>
       </div>
       <div class="hero-rule" aria-hidden="true"></div>
-      <div class="hero-bottom"><span>Based in Nigeria</span><span>Working across borders</span></div>
+      <div class="hero-bottom"><span>Remote in Africa</span><span>Working across borders</span></div>
     </section>
 
     <section class="proof-strip" aria-label="Areas of expertise">
@@ -314,6 +332,95 @@ document.querySelector("#app").innerHTML = `
 
 document.body.classList.add("has-js");
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+const themeButtons = [...document.querySelectorAll("[data-theme-choice]")];
+const systemColorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+const themeControl = document.querySelector(".theme-control");
+const themeTrigger = document.querySelector(".theme-trigger");
+const themeTriggerIcon = document.querySelector(".theme-trigger-icon");
+const themePopover = document.querySelector(".theme-popover");
+let selectedTheme = "system";
+
+function getInitialTheme() {
+  try {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    if (
+      savedTheme === "light" ||
+      savedTheme === "dark" ||
+      savedTheme === "system"
+    ) {
+      return savedTheme;
+    }
+  } catch {}
+
+  return "system";
+}
+
+function applyTheme(preference, persist = true) {
+  selectedTheme = preference;
+  const theme =
+    preference === "system"
+      ? systemColorScheme.matches
+        ? "dark"
+        : "light"
+      : preference;
+
+  document.documentElement.dataset.theme = theme;
+  themeButtons.forEach((button) => {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.themeChoice === preference),
+    );
+  });
+  themeTrigger.setAttribute("aria-label", `Color theme: ${preference}`);
+  themeTriggerIcon.innerHTML = themeIcons[preference];
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", theme === "dark" ? "#101814" : "#f6f8f6");
+
+  if (persist) {
+    try {
+      window.localStorage.setItem("portfolio-theme", preference);
+    } catch {}
+  }
+}
+
+applyTheme(getInitialTheme(), false);
+systemColorScheme.addEventListener("change", () => {
+  if (selectedTheme === "system") {
+    applyTheme("system", false);
+  }
+});
+
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyTheme(button.dataset.themeChoice);
+    themePopover.hidden = true;
+    themeTrigger.setAttribute("aria-expanded", "false");
+    themeTrigger.focus();
+  });
+});
+
+themeTrigger.addEventListener("click", () => {
+  const isExpanded = themeTrigger.getAttribute("aria-expanded") === "true";
+  themeTrigger.setAttribute("aria-expanded", String(!isExpanded));
+  themePopover.hidden = isExpanded;
+});
+
+document.addEventListener("click", (event) => {
+  if (!themeControl.contains(event.target)) {
+    themePopover.hidden = true;
+    themeTrigger.setAttribute("aria-expanded", "false");
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !themePopover.hidden) {
+    themePopover.hidden = true;
+    themeTrigger.setAttribute("aria-expanded", "false");
+    themeTrigger.focus();
+  }
+});
 
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".site-nav");
