@@ -110,6 +110,12 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
 .banking-actions i { width: 33px; height: 24px; background: #e6edf9; }
 .banking-row { height: 4px; margin-top: 14px; background: var(--line); }
 .banking-row--short { width: 62%; margin-top: 7px; }
+.faith-window { width: 170px; height: 184px; padding: 18px 16px; background: var(--white); box-shadow: 12px 12px 0 rgba(23,35,31,.1); }
+.faith-emblem { width: 42px; height: 42px; display: block; margin: 0 auto 18px; border: 1px solid #c7ad59; border-radius: 50%; position: relative; }
+.faith-emblem::after { content: ''; width: 18px; height: 18px; position: absolute; inset: 11px; border: 1px solid #c7ad59; border-radius: 50%; }
+.faith-title { width: 72%; height: 7px; display: block; margin: 0 auto 8px; background: #39463f; }
+.faith-line { width: 48%; height: 4px; display: block; margin: 0 auto 16px; background: var(--line); }
+.faith-panel { height: 48px; display: block; background: #f2eee2; }
 .project-copy { max-width: 495px; }
 .project-copy .eyebrow { margin-bottom: 10px; }
 .project-copy h3 { margin-bottom: 12px; font-size: 29px; font-weight: 600; }
@@ -143,6 +149,7 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
 .role-main h3 { margin-bottom: 5px; font-size: 16px; font-weight: 600; }
 .role-title { margin-bottom: 0; color: var(--muted); font-size: 12px; }
 .role-detail { grid-column: 2; grid-row: 1 / span 2; max-width: 470px; margin-bottom: 0; color: #53615b; font-size: 12px; line-height: 1.6; }
+.role-links { grid-column: 2; grid-row: 3; display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
 
 .contact-section { padding-top: 80px; color: var(--white); background: var(--ink); }
 .contact-inner { padding-bottom: 75px; display: flex; align-items: end; justify-content: space-between; gap: 30px; }
@@ -214,6 +221,7 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
   .role-main h3 { margin-bottom: 3px; }
   .role-title { margin-bottom: 8px; }
   .role-detail { grid-column: 1; grid-row: auto; }
+  .role-links { grid-column: 1; grid-row: auto; }
   .contact-section { padding-top: 58px; }
   .contact-inner { padding-bottom: 46px; flex-direction: column; align-items: flex-start; gap: 25px; }
   .contact-inner h2 { font-size: 34px; }
