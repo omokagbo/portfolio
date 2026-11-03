@@ -325,7 +325,7 @@ document.querySelector("#app").innerHTML = `
         <div><p class="eyebrow">Have a thoughtful product to build?</p><h2 id="contact-title">Let's make it work beautifully.</h2></div>
         <a class="button button-light" href="mailto:emmanuel.omokagbo@gmail.com">emmanuel.omokagbo@gmail.com</a>
       </div>
-      <div class="page-shell contact-links"><span>Emmanuel Omokagbo</span><div><a href="https://www.linkedin.com/in/emmanuel-omokagbo/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/omokagbo" target="_blank" rel="noreferrer">GitHub</a></div><span class="copyright">&copy; <span id="year"></span></span></div>
+      <div class="page-shell contact-links"><span>Emmanuel Omokagbo</span><div><a href="https://www.linkedin.com/in/emmanuel-omokagbo/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/omokagbo" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@omokagbo" target="_blank" rel="noreferrer">Medium</a><a href="https://hashnode.com/@omokagbo" target="_blank" rel="noreferrer">Hashnode</a></div><span class="copyright">&copy; <span id="year"></span></span></div>
     </section>
   </main>
 `;
