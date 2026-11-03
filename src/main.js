@@ -30,6 +30,8 @@ const projects = [
     stack: ["Swift", "AVFoundation", "AVKit", "WebSocket", "HLS"],
     color: "blue",
     visual: "waveform",
+    href: "https://apps.apple.com/ng/app/villagesquare/id6746132330",
+    linkLabel: "View on the App Store",
   },
   {
     name: "Publicly",
@@ -54,6 +56,17 @@ const projects = [
     linkLabel: "View on the App Store",
   },
   {
+    name: "Christ Faith Tabernacle",
+    category: "Frontendlabs project",
+    description:
+      "A church application built using SwiftUI and Kotlin Multiplatform (KMM).",
+    stack: ["SwiftUI", "KMM"],
+    color: "coral",
+    visual: "faith",
+    href: "https://apps.apple.com/ng/app/christ-faith-tabernacle/id1602990152",
+    linkLabel: "View on the App Store",
+  },
+  {
     name: "GIGM",
     category: "Mobility and enterprise",
     description:
@@ -74,6 +87,20 @@ const roles = [
     dates: "Aug 2024 - Present",
     detail:
       "Leading iOS architecture and delivery. Migrated the legacy Xamarin app to native Swift and UIKit, improving app stability from about 80% to over 99%.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/alat/id1222853161",
+        label: "ALAT",
+      },
+      {
+        href: "https://apps.apple.com/ng/app/alat-xplore/id6478937055",
+        label: "ALAT Xplore",
+      },
+      {
+        href: "https://apps.apple.com/ng/app/alat-for-business/id1445132693",
+        label: "ALAT for Business",
+      },
+    ],
   },
   {
     company: "PubliclyMe",
@@ -97,6 +124,19 @@ const roles = [
       "Built the iOS app from the ground up and improved launch time by 30% through focused performance work.",
   },
   {
+    company: "FCMB",
+    role: "Senior iOS Engineer, Contract",
+    dates: "Mar 2024 - Aug 2024",
+    detail:
+      "Contributed code improvements, conducted code reviews, and helped improve the app architecture.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/fcmb-mobile/id1444638628",
+        label: "FCMB Mobile",
+      },
+    ],
+  },
+  {
     company: "Pastel",
     role: "Senior iOS Developer",
     dates: "Feb 2023 - Nov 2023",
@@ -108,7 +148,7 @@ const roles = [
     role: "Senior iOS Developer, Contract",
     dates: "Jan 2023 - Sep 2023",
     detail:
-      "Improved several iOS apps, raised test coverage from 40% to 80%, and mentored engineers.",
+      "Built reusable SwiftUI components and custom controls, helped integrate KMM across iOS and Android apps, raised XCTest coverage from 40% to 80%, and mentored junior engineers.",
   },
   {
     company: "GIGM",
@@ -150,12 +190,13 @@ const projectMarkup = projects
       ${project.visual === "receipt" ? '<div class="receipt-window"><span class="receipt-brand">SWIFTMONEY</span><span class="receipt-rule"></span><span class="receipt-line"></span><span class="receipt-line receipt-line--short"></span><span class="receipt-rule"></span><span class="receipt-total"></span></div><span class="art-caption">SECURE FINANCE</span>' : ""}
       ${project.visual === "route" ? '<div class="route-window"><span class="route-pin route-pin--start"></span><span class="route-path"></span><span class="route-pin route-pin--end"></span></div><span class="art-caption">MOBILITY / IOS</span>' : ""}
       ${project.visual === "banking" ? '<div class="banking-window"><div class="banking-head"><span></span><i></i></div><div class="banking-balance"></div><div class="banking-subline"></div><div class="banking-actions"><i></i><i></i><i></i></div><div class="banking-row"></div><div class="banking-row banking-row--short"></div></div><span class="art-caption">ALAT / DIGITAL BANKING</span>' : ""}
+      ${project.visual === "faith" ? '<div class="faith-window"><span class="faith-emblem"></span><span class="faith-title"></span><span class="faith-line"></span><span class="faith-panel"></span></div><span class="art-caption">CHRIST FAITH TABERNACLE</span>' : ""}
     </div>
     <div class="project-copy">
       <p class="eyebrow">${project.category}</p>
       <h3>${project.name}</h3>
       <p class="project-description">${project.description}</p>
-      <p class="project-impact">${project.impact}</p>
+      ${project.impact ? `<p class="project-impact">${project.impact}</p>` : ""}
       <ul class="tag-list" aria-label="Technologies used">${project.stack.map((item) => `<li>${item}</li>`).join("")}</ul>
       ${project.href ? `<a class="text-link" href="${project.href}" target="_blank" rel="noreferrer">${project.linkLabel}<span aria-hidden="true"> ↗</span></a>` : ""}
     </div>
@@ -173,6 +214,7 @@ const experienceMarkup = roles
       <h3>${role.company}</h3>
       <p class="role-title">${role.role}</p>
       <p class="role-detail">${role.detail}</p>
+      ${role.links ? `<div class="role-links">${role.links.map((link) => `<a class="text-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true"> ↗</span></a>`).join("")}</div>` : ""}
     </div>
   </article>
 `,
