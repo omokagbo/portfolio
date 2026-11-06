@@ -111,6 +111,13 @@ const roles = [
   },
   {
     company: "PubliclyMe",
+    role: "Lead Mobile Developer",
+    dates: "Mar 2024 - Oct 2024",
+    detail:
+      "Built the iOS app from the ground up and improved launch time by 30% through focused performance work.",
+  },
+  {
+    company: "PubliclyMe",
     role: "Lead Mobile Developer, Contract",
     dates: "Mar 2025 - Present",
     detail:
@@ -122,13 +129,6 @@ const roles = [
     dates: "Nov 2024 - Mar 2025",
     detail:
       "Owned audio rooms, messaging, live streaming, and the reliability work behind real-time features.",
-  },
-  {
-    company: "PubliclyMe",
-    role: "Lead Mobile Developer, Contract",
-    dates: "Mar 2024 - Oct 2024",
-    detail:
-      "Built the iOS app from the ground up and improved launch time by 30% through focused performance work.",
   },
   {
     company: "FCMB",
@@ -212,9 +212,7 @@ const projectMarkup = projects
   )
   .join("");
 
-const experienceMarkup = roles
-  .map(
-    (role) => `
+const renderRole = (role) => `
   <article class="role-row" data-reveal>
     <div class="role-date">${role.dates}</div>
     <div class="role-main">
@@ -224,9 +222,11 @@ const experienceMarkup = roles
       ${role.links ? `<div class="role-links">${role.links.map((link) => `<a class="text-link" href="${link.href}" target="_blank" rel="noreferrer">${link.label}<span aria-hidden="true"> ↗</span></a>`).join("")}</div>` : ""}
     </div>
   </article>
-`,
-  )
-  .join("");
+`;
+
+const isContractRole = (role) => role.role.includes("Contract");
+const fullTimeMarkup = roles.filter((role) => !isContractRole(role)).map(renderRole).join("");
+const contractMarkup = roles.filter(isContractRole).map(renderRole).join("");
 
 document.querySelector("#app").innerHTML = `
   <header class="site-header">
@@ -268,7 +268,7 @@ document.querySelector("#app").innerHTML = `
         <div class="portrait-index" aria-hidden="true">EO / 26</div>
       </div>
       <div class="hero-rule" aria-hidden="true"></div>
-      <div class="hero-bottom"><span>Remote in Africa</span><span>Working across borders</span></div>
+      <div class="hero-bottom"><span>Remote</span><span>Working across borders</span></div>
     </section>
 
     <section class="proof-strip" aria-label="Areas of expertise">
@@ -316,7 +316,11 @@ document.querySelector("#app").innerHTML = `
         <h2 id="experience-title">A steady record of shipping.</h2>
         <p class="section-intro">From hands-on iOS development to leading mobile teams, across early-stage products and established platforms.</p>
       </div>
-      <div class="experience-list">${experienceMarkup}</div>
+      <div class="experience-list">${fullTimeMarkup}</div>
+      <div class="contract-block">
+        <p class="eyebrow">Contract work</p>
+        <div class="experience-list">${contractMarkup}</div>
+      </div>
     </section>
 
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
