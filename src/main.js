@@ -155,7 +155,7 @@ const roles = [
     role: "Senior iOS Developer, Contract",
     dates: "Jan 2023 - Sep 2023",
     detail:
-      "Built reusable SwiftUI components and custom controls, helped integrate KMM across iOS and Android apps, raised XCTest coverage from 40% to 80%, and mentored junior engineers.",
+      "Built a travel and tours app and the CFT church app, helped integrate KMM across iOS and Android apps, raised XCTest coverage from 40% to 80%, and mentored junior engineers.",
   },
   {
     company: "GIGM",
