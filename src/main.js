@@ -49,6 +49,8 @@ const projects = [
     stack: ["SwiftUI", "UIKit", "MVVM", "Realm", "Notifications"],
     color: "coral",
     visual: "feed",
+    href: "https://apps.apple.com/ng/app/publicly/id6504997806",
+    linkLabel: "View on the App Store",
   },
   {
     name: "SwiftMoney",
@@ -115,6 +117,12 @@ const roles = [
     dates: "Mar 2024 - Oct 2024",
     detail:
       "Built the iOS app from the ground up and improved launch time by 30% through focused performance work.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/publicly/id6504997806",
+        label: "Publicly",
+      },
+    ],
   },
   {
     company: "PubliclyMe",
@@ -122,6 +130,12 @@ const roles = [
     dates: "Mar 2025 - Present",
     detail:
       "Leading the SwiftUI rebuild, setting architecture and engineering standards, and partnering with product and backend teams.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/publicly/id6504997806",
+        label: "Publicly",
+      },
+    ],
   },
   {
     company: "VillageSquare",
@@ -129,6 +143,12 @@ const roles = [
     dates: "Nov 2024 - Mar 2025",
     detail:
       "Owned audio rooms, messaging, live streaming, and the reliability work behind real-time features.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/villagesquare/id6746132330",
+        label: "VillageSquare",
+      },
+    ],
   },
   {
     company: "FCMB",
@@ -149,6 +169,20 @@ const roles = [
     dates: "Feb 2023 - Nov 2023",
     detail:
       "Built financial product features across SwiftMoney and SwiftMoney Business, including KYC, payment flows, and document generation.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/swift-money/id6443892373",
+        label: "SwiftMoney",
+      },
+      {
+        href: "https://apps.apple.com/ng/app/swiftmoney-business/id1604786000",
+        label: "SwiftMoney Business",
+      },
+      {
+        href: "https://apps.apple.com/ng/app/swift-receipt/id6446998340",
+        label: "Swift Receipt",
+      },
+    ],
   },
   {
     company: "Frontendlabs Ltd",
@@ -156,6 +190,12 @@ const roles = [
     dates: "Jan 2023 - Sep 2023",
     detail:
       "Built a travel and tours app and the CFT church app, helped integrate KMM across iOS and Android apps, raised XCTest coverage from 40% to 80%, and mentored junior engineers.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/christ-faith-tabernacle/id1602990152",
+        label: "CFT church app",
+      },
+    ],
   },
   {
     company: "GIGM",
@@ -163,6 +203,16 @@ const roles = [
     dates: "Dec 2021 - Feb 2023",
     detail:
       "Led a team of three iOS engineers and delivered passenger and corporate mobility applications.",
+    links: [
+      {
+        href: "https://apps.apple.com/ng/app/gig-mobility/id1154045195",
+        label: "GIGM passenger app",
+      },
+      {
+        href: "https://apps.apple.com/ng/app/gigm-ep/id1553026252",
+        label: "GIGM EP",
+      },
+    ],
   },
   {
     company: "Co.Lab",
