@@ -273,7 +273,7 @@ document.querySelector("#app").innerHTML = `
     </section>
 
     <section class="proof-strip" aria-label="Areas of expertise">
-      <div class="page-shell proof-inner"><span>Native iOS</span><span>Product Architecture</span><span>Real-Time Media</span><span>Engineering Leadership</span></div>
+      <div class="page-shell proof-inner"><span>Engineering Leadership</span><span>Native iOS</span><span>Product Architecture</span><span>Real-Time Media</span></div>
     </section>
 
     <section class="work-section page-shell section-space" id="work" aria-labelledby="work-title">
