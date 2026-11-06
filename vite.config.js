@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 export default defineConfig({
   base: "/portfolio/",
   root: "src",
+  // favicon.svg and og-image.png live at the repo root, which is also the build output.
+  publicDir: false,
   build: {
     outDir: "..",
     emptyOutDir: false,
