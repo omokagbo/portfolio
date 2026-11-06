@@ -9,13 +9,19 @@ const themeIcons = {
   system: monitorIcon,
 };
 
+const splitWords = (text) =>
+  text
+    .split(" ")
+    .map((word, index) => `<span class="word" style="--i:${index}">${word}</span>`)
+    .join(" ");
+
 const projects = [
   {
     name: "ALAT by Wema",
     category: "Mobile banking and platform modernization",
     description:
       "Led the move from a legacy Xamarin app to native Swift and UIKit, establishing reusable architecture and engineering standards. Helped pioneer an AI voice-banking feature in West Africa, alongside work across cards, FX, savings, analytics, and personalization.",
-    stat: "99%",
+    stat: "99%+",
     impact: "App stability improved from about 80% to over 99%",
     stack: [
       "Swift",
@@ -34,8 +40,8 @@ const projects = [
     category: "Real-time audio and video",
     description:
       "Built the core audio-room experience with AVFoundation and AVKit, then developed a custom WebSocket layer for resilient live communication.",
-    stat: "25%",
-    impact: "25% higher engagement",
+    stat: "40%+",
+    impact: "40%+ higher engagement",
     stack: ["Swift", "AVFoundation", "AVKit", "WebSocket", "HLS"],
     color: "blue",
     visual: "waveform",
@@ -59,8 +65,8 @@ const projects = [
     category: "Digital finance",
     description:
       "Delivered secure KYC flows, payments, credit features, and document processing for a consumer finance app and its business counterpart.",
-    stat: "95%+",
-    impact: "95%+ crash-free sessions",
+    stat: "99%+",
+    impact: "99%+ crash-free sessions",
     stack: ["Swift", "UIKit", "Core Image", "PDFKit", "Payments"],
     color: "green",
     visual: "receipt",
@@ -83,8 +89,8 @@ const projects = [
     category: "Mobility and enterprise",
     description:
       "Led a three-engineer team rebuilding the passenger app, and shipped a separate corporate experience for travel, billing, and fleet operations.",
-    stat: "98%",
-    impact: "98% crash-free sessions",
+    stat: "99%+",
+    impact: "99%+ crash-free sessions",
     stack: ["Swift", "MVVM-C", "Payments", "MapKit", "Realm"],
     color: "blue",
     visual: "route",
@@ -256,7 +262,7 @@ const projectMarkup = projects
     <div class="project-copy">
       <p class="eyebrow">${project.category}</p>
       <h3>${project.name}</h3>
-      ${project.stat ? `<p class="project-stat" aria-hidden="true">${project.stat}</p>` : ""}
+      ${project.stat ? `<p class="project-stat" data-value="${project.stat}" aria-hidden="true">${project.stat}</p>` : ""}
       <p class="project-description">${project.description}</p>
       ${project.impact ? `<p class="project-impact">${project.impact}</p>` : ""}
       <ul class="tag-list" aria-label="Technologies used">${project.stack.map((item) => `<li>${item}</li>`).join("")}</ul>
@@ -309,7 +315,7 @@ document.querySelector("#app").innerHTML = `
     <section class="hero page-shell" aria-labelledby="hero-title">
       <div class="hero-copy" data-reveal>
         <p class="availability"><span class="availability-dot"></span> Senior iOS Engineer</p>
-        <h1 id="hero-title">Building iOS products for the moments that matter.</h1>
+        <h1 id="hero-title" class="hero-title">${splitWords("Building iOS products for the moments that matter.")}</h1>
         <p class="hero-intro">I'm Emmanuel, a mobile engineer and technical lead. I turn complex product ideas into dependable, human-feeling experiences for Apple platforms.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#work">Explore selected work</a>
@@ -524,4 +530,76 @@ if (
   document
     .querySelectorAll("[data-reveal]")
     .forEach((element) => element.classList.add("is-visible"));
+}
+
+/* Motion: hero word reveal, timeline progress, count-up figures. */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!reduceMotion) {
+  document.body.classList.add("has-motion");
+  const heroTitle = document.querySelector(".hero-title");
+  const experienceList = document.querySelector("#experience .experience-list");
+
+  requestAnimationFrame(() => heroTitle.classList.add("is-ready"));
+
+  const countUp = (node) => {
+    const final = node.dataset.value;
+    const target = parseFloat(final);
+    const suffix = final.replace(/[\d.]/g, "");
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min((now - start) / 900, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      node.textContent = `${Math.round(target * eased)}${suffix}`;
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const statObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          countUp(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+  document.querySelectorAll(".project-stat").forEach((node) => statObserver.observe(node));
+
+  const roleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) =>
+        entry.target.classList.toggle("is-active", entry.isIntersecting),
+      );
+    },
+    { rootMargin: "-45% 0px -45% 0px" },
+  );
+  document.querySelectorAll(".role-row").forEach((row) => roleObserver.observe(row));
+
+  let ticking = false;
+  const updateOnScroll = () => {
+    ticking = false;
+    if (experienceList) {
+      const rect = experienceList.getBoundingClientRect();
+      const progress = Math.min(
+        Math.max((window.innerHeight * 0.5 - rect.top) / rect.height, 0),
+        1,
+      );
+      experienceList.style.setProperty("--progress", progress.toFixed(3));
+    }
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateOnScroll);
+      }
+    },
+    { passive: true },
+  );
+  updateOnScroll();
 }
