@@ -220,6 +220,8 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
 
 .experience-heading { margin-bottom: 46px; }
 .experience-list { border-top: 1px solid var(--line); }
+.contract-block { margin-top: 56px; }
+.contract-block .eyebrow { margin-bottom: 18px; }
 .role-row { padding: 23px 0; display: grid; grid-template-columns: 200px 1fr; gap: 35px; border-bottom: 1px solid var(--line); }
 .role-date { padding-top: 3px; color: var(--muted); font-family: var(--mono); font-size: 10px; }
 .role-main { display: grid; grid-template-columns: minmax(160px, .7fr) 1fr; column-gap: 28px; }
