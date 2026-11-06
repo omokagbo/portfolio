@@ -15,6 +15,7 @@ const projects = [
     category: "Mobile banking and platform modernization",
     description:
       "Led the move from a legacy Xamarin app to native Swift and UIKit, establishing reusable architecture and engineering standards. Helped pioneer an AI voice-banking feature in West Africa, alongside work across cards, FX, savings, analytics, and personalization.",
+    stat: "99%",
     impact: "App stability improved from about 80% to over 99%",
     stack: [
       "Swift",
@@ -33,6 +34,7 @@ const projects = [
     category: "Real-time audio and video",
     description:
       "Built the core audio-room experience with AVFoundation and AVKit, then developed a custom WebSocket layer for resilient live communication.",
+    stat: "25%",
     impact: "25% higher engagement",
     stack: ["Swift", "AVFoundation", "AVKit", "WebSocket", "HLS"],
     color: "blue",
@@ -57,6 +59,7 @@ const projects = [
     category: "Digital finance",
     description:
       "Delivered secure KYC flows, payments, credit features, and document processing for a consumer finance app and its business counterpart.",
+    stat: "95%+",
     impact: "95%+ crash-free sessions",
     stack: ["Swift", "UIKit", "Core Image", "PDFKit", "Payments"],
     color: "green",
@@ -80,6 +83,7 @@ const projects = [
     category: "Mobility and enterprise",
     description:
       "Led a three-engineer team rebuilding the passenger app, and shipped a separate corporate experience for travel, billing, and fleet operations.",
+    stat: "98%",
     impact: "98% crash-free sessions",
     stack: ["Swift", "MVVM-C", "Payments", "MapKit", "Realm"],
     color: "blue",
@@ -252,6 +256,7 @@ const projectMarkup = projects
     <div class="project-copy">
       <p class="eyebrow">${project.category}</p>
       <h3>${project.name}</h3>
+      ${project.stat ? `<p class="project-stat" aria-hidden="true">${project.stat}</p>` : ""}
       <p class="project-description">${project.description}</p>
       ${project.impact ? `<p class="project-impact">${project.impact}</p>` : ""}
       <ul class="tag-list" aria-label="Technologies used">${project.stack.map((item) => `<li>${item}</li>`).join("")}</ul>
@@ -327,7 +332,7 @@ document.querySelector("#app").innerHTML = `
 
     <section class="work-section page-shell section-space" id="work" aria-labelledby="work-title">
       <div class="section-heading" data-reveal>
-        <p class="eyebrow">Selected work</p>
+        <p class="eyebrow"><span class="section-num" aria-hidden="true">01</span>Selected work</p>
         <h2 id="work-title">Products built to do real work.</h2>
         <p class="section-intro">A selection of mobile products across social, finance, and mobility. My role spans architecture, implementation, and the details that make an app feel dependable.</p>
       </div>
@@ -337,7 +342,7 @@ document.querySelector("#app").innerHTML = `
     <section class="about-section section-space" id="about" aria-labelledby="about-title">
       <div class="page-shell about-grid">
         <div class="about-heading" data-reveal>
-          <p class="eyebrow">How I work</p>
+          <p class="eyebrow"><span class="section-num" aria-hidden="true">02</span>How I work</p>
           <h2 id="about-title">Good engineering should feel invisible.</h2>
         </div>
         <div class="about-copy" data-reveal>
@@ -362,7 +367,7 @@ document.querySelector("#app").innerHTML = `
 
     <section class="experience-section page-shell section-space" id="experience" aria-labelledby="experience-title">
       <div class="section-heading experience-heading" data-reveal>
-        <p class="eyebrow">Experience</p>
+        <p class="eyebrow"><span class="section-num" aria-hidden="true">03</span>Experience</p>
         <h2 id="experience-title">A steady record of shipping.</h2>
         <p class="section-intro">From hands-on iOS development to leading mobile teams, across early-stage products and established platforms.</p>
       </div>
