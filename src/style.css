@@ -251,8 +251,8 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
 .hero-copy > :nth-child(3) { transition-delay: 180ms; }
 .hero-copy > :nth-child(4) { transition-delay: 250ms; }
 .hero-copy > :nth-child(5) { transition-delay: 320ms; }
-.has-js .hero-portrait .portrait-frame img { transform: scale(1.045); transition: transform 850ms cubic-bezier(.2,.7,.2,1); }
-.has-js .hero-portrait.is-visible .portrait-frame img { transform: scale(1); }
+.has-js .hero-portrait .portrait-frame img { scale: 1.045; transition: scale 850ms cubic-bezier(.2,.7,.2,1); }
+.has-js .hero-portrait.is-visible .portrait-frame img { scale: 1; }
 .has-js .hero-portrait .portrait-note { opacity: 0; transform: translateY(8px); transition: opacity 420ms ease 220ms, transform 420ms ease 220ms; }
 .has-js .hero-portrait.is-visible .portrait-note { opacity: 1; transform: translateY(0); }
 @keyframes pulse { from { transform: scaleY(.65); } to { transform: scaleY(1); } }
@@ -339,8 +339,20 @@ h1 { max-width: 650px; margin-bottom: 22px; font-size: 58px; line-height: 1.03; 
   .role-row::before { left: 0; top: 22px; }
 }
 
+/* Hero word reveal and timeline fill (motion only; see has-motion in main.js) */
+.word { display: inline-block; }
+.has-motion .hero-title .word { opacity: 0; transform: translateY(.35em); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i) * 70ms); }
+.has-motion .hero-title.is-ready .word { opacity: 1; transform: none; }
+.experience-list::after { content: ''; display: none; position: absolute; top: 0; bottom: 0; left: 217px; width: 1px; background: var(--blue); transform-origin: top; transform: scaleY(var(--progress, 0)); }
+.has-motion .experience-list::after { display: block; }
+.has-motion .role-row.is-active::before { background: var(--blue); }
+
+@media (max-width: 680px) {
+  .experience-list::after { left: 5px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .has-js [data-reveal] { opacity: 1; transform: none; }
-  .has-js .hero-copy > *, .has-js .hero-portrait .portrait-frame img, .has-js .hero-portrait .portrait-note { opacity: 1; transform: none; }
+  .has-js .hero-copy > *, .has-js .hero-portrait .portrait-frame img, .has-js .hero-portrait .portrait-note { opacity: 1; transform: none; scale: none; }
 }
