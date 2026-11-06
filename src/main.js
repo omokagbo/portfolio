@@ -2,8 +2,7 @@ import "./style.css";
 import sunIcon from "lucide-static/icons/sun.svg?raw";
 import moonIcon from "lucide-static/icons/moon.svg?raw";
 import monitorIcon from "lucide-static/icons/monitor.svg?raw";
-
-const profileImage = "https://omokagbo.github.io/portfolio/img/profile.png";
+import profileImage from "../img/profile.webp?url";
 const themeIcons = {
   light: sunIcon,
   dark: moonIcon,
