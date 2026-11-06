@@ -18,6 +18,7 @@ const splitWords = (text) =>
 const projects = [
   {
     name: "ALAT by Wema",
+    group: "finance",
     category: "Mobile banking and platform modernization",
     description:
       "Led the move from a legacy Xamarin app to native Swift and UIKit, establishing reusable architecture and engineering standards. Helped pioneer an AI voice-banking feature in West Africa, alongside work across cards, FX, savings, analytics, and personalization.",
@@ -37,6 +38,7 @@ const projects = [
   },
   {
     name: "VillageSquare",
+    group: "social",
     category: "Real-time audio and video",
     description:
       "Built the core audio-room experience with AVFoundation and AVKit, then developed a custom WebSocket layer for resilient live communication.",
@@ -50,6 +52,7 @@ const projects = [
   },
   {
     name: "Publicly",
+    group: "social",
     category: "Social platform",
     description:
       "Building a rich-media social product, from its original UIKit foundations to a SwiftUI rebuild with a clear, maintainable app architecture.",
@@ -62,6 +65,7 @@ const projects = [
   },
   {
     name: "SwiftMoney",
+    group: "finance",
     category: "Digital finance",
     description:
       "Delivered secure KYC flows, payments, credit features, and document processing for a consumer finance app and its business counterpart.",
@@ -75,6 +79,7 @@ const projects = [
   },
   {
     name: "Christ Faith Tabernacle",
+    group: "community",
     category: "Frontendlabs project",
     description:
       "A church application built using SwiftUI and Kotlin Multiplatform (KMM).",
@@ -86,6 +91,7 @@ const projects = [
   },
   {
     name: "GIGM",
+    group: "mobility",
     category: "Mobility and enterprise",
     description:
       "Led a three-engineer team rebuilding the passenger app, and shipped a separate corporate experience for travel, billing, and fleet operations.",
@@ -250,7 +256,7 @@ const roles = [
 const projectMarkup = projects
   .map(
     (project) => `
-  <article class="project-row project-row--${project.color}" data-reveal>
+  <article class="project-row project-row--${project.color}" data-group="${project.group}" data-reveal>
     <div class="project-art project-art--${project.visual}" aria-hidden="true">
       ${project.visual === "waveform" ? '<div class="waveform"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="art-caption">LIVE AUDIO</span>' : ""}
       ${project.visual === "feed" ? '<div class="feed-window"><span class="feed-dot"></span><span class="feed-line feed-line--long"></span><span class="feed-line"></span><span class="feed-image"></span><span class="feed-line feed-line--short"></span></div><span class="art-caption">SOCIAL / MEDIA</span>' : ""}
@@ -342,6 +348,13 @@ document.querySelector("#app").innerHTML = `
         <h2 id="work-title">Products built to do real work.</h2>
         <p class="section-intro">A selection of mobile products across social, finance, and mobility. My role spans architecture, implementation, and the details that make an app feel dependable.</p>
       </div>
+      <div class="filter-bar" role="group" aria-label="Filter projects" data-reveal>
+        <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="finance" aria-pressed="false">Finance</button>
+        <button type="button" class="filter-btn" data-filter="social" aria-pressed="false">Social</button>
+        <button type="button" class="filter-btn" data-filter="mobility" aria-pressed="false">Mobility</button>
+        <button type="button" class="filter-btn" data-filter="community" aria-pressed="false">Community</button>
+      </div>
       <div class="project-list">${projectMarkup}</div>
     </section>
 
@@ -368,6 +381,15 @@ document.querySelector("#app").innerHTML = `
           <h3 class="skills-heading">Also experienced with</h3>
           <div class="skills-list skills-list--secondary"><span>Flutter</span><span>Dart</span><span>KMM</span><span>Kotlin</span><span>Xamarin</span><span>C#</span><span>Objective-C</span><span>React Native</span><span>JavaScript</span><span>Python</span><span>FastAPI</span></div>
         </div>
+      </div>
+      <div class="page-shell process-block" data-reveal>
+        <p class="eyebrow">Process</p>
+        <ol class="process-steps">
+          <li><span class="process-num">01</span><h3>Understand</h3><p>Clarify the product goal, constraints, and the people using it, with product and design.</p></li>
+          <li><span class="process-num">02</span><h3>Architect</h3><p>Set module boundaries and engineering standards before the first screen is built.</p></li>
+          <li><span class="process-num">03</span><h3>Build</h3><p>Ship in small, tested increments, with reviews that keep the codebase easy to change.</p></li>
+          <li><span class="process-num">04</span><h3>Ship</h3><p>Release with automated delivery, then watch stability closely after launch.</p></li>
+        </ol>
       </div>
     </section>
 
@@ -603,3 +625,22 @@ if (!reduceMotion) {
   );
   updateOnScroll();
 }
+
+/* Project filter: show one group at a time and keep row alternation tidy. */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectRows = document.querySelectorAll(".project-row");
+const applyFilter = (filter) => {
+  let visibleIndex = 0;
+  projectRows.forEach((row) => {
+    const show = filter === "all" || row.dataset.group === filter;
+    row.hidden = !show;
+    row.classList.toggle("is-alt", show && visibleIndex++ % 2 === 1);
+  });
+  filterButtons.forEach((button) =>
+    button.setAttribute("aria-pressed", String(button.dataset.filter === filter)),
+  );
+};
+filterButtons.forEach((button) =>
+  button.addEventListener("click", () => applyFilter(button.dataset.filter)),
+);
+applyFilter("all");
